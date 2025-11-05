@@ -8,23 +8,23 @@ namespace ActivationCodeValidator_lib
         private const int GROUP_COUNT = 3;
         private static int SeparatorCount => GROUP_COUNT - 1;
 
-        private static int LengthWithoutSeparator => (GROUP_COUNT * GROUP_LENGTH);
+        private static int LengthWithoutSeparator => GROUP_COUNT * GROUP_LENGTH;
         private static int LengthWithSeparator => LengthWithoutSeparator + SeparatorCount;
         private static int[] PossibleLengths => [LengthWithSeparator, LengthWithoutSeparator];
 
         private static Regex BuildRegex(bool withSeparator)
         {
             string group = $"[a-z0-9]{{{GROUP_LENGTH}}}";
-            
+
             return new Regex($"^{string.Join(withSeparator ? "-" : "",
                Enumerable.Repeat(group, GROUP_COUNT))}$");
         }
-        
+
         public static bool CheckCodeValidity(string input, out List<string> errors)
         {
             input = input.Trim().ToLower();
             errors = [];
-            
+
             if (string.IsNullOrWhiteSpace(input))
             {
                 errors.Add("Input is empty");
@@ -69,7 +69,7 @@ namespace ActivationCodeValidator_lib
 
             return errors.Count == 0;
         }
-        
+
         public static bool CheckCodeValidity(string input) => CheckCodeValidity(input, out _);
     }
 }

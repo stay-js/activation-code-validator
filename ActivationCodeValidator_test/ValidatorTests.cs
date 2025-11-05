@@ -7,16 +7,14 @@ namespace ActivationCodeValidator_test
         [Test]
         public void ValidatorReturnsFalseIfGivenEmptyString()
         {
-            Assert.That(Validator.CheckCodeValidity(""),
-                Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity(""), Is.EqualTo(false));
         }
 
         [TestCase("CAJAVA7")]
         [TestCase("JACA-UU1G-1M0P1")]
         public void ValidatorReturnsFalseIfGivenStringsLengthIsNotCorrect(string input)
         {
-            Assert.That(Validator.CheckCodeValidity(input),
-                Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
         }
 
         [TestCase("--GGJJCCCC1")]
@@ -24,38 +22,33 @@ namespace ActivationCodeValidator_test
         [TestCase("JACA-UU1G1M0P1")]
         public void ValidatorReturnsFalseIfTheGivenStringIsNotInTheCorrectFormat(string input)
         {
-            Assert.That(Validator.CheckCodeValidity(input),
-                Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
         }
 
         [Test]
         public void
             ValidatorReturnsFalseIfTheGivenStringContainsCharactersOtherThan_a_to_Z_And_0_to_9()
         {
-            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-C@CC"),
-                Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-C@CC"), Is.EqualTo(false));
         }
 
         [Test]
         public void
             ValidatorReturnsFalseIfTheGivenStringDoesNotContainAtLeast_One_G_And_One_C_AndContainsExactlyOne_J()
         {
-            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-CCCC"),
-                Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-CCCC"), Is.EqualTo(false));
         }
 
         [Test]
         public void ValidatorReturnsFalseIfGivesStringDoesNotContainAtLeastOneNumber()
         {
-            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-CCCC"),
-                Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-CCCC"), Is.EqualTo(false));
         }
 
         [Test]
         public void ValidatorReturnTrueIfGivenAKnownGoodCode()
         {
-            Assert.That(Validator.CheckCodeValidity("KGCW-5321-JUAH"),
-                Is.EqualTo(true));
+            Assert.That(Validator.CheckCodeValidity("KGCW-5321-JUAH"), Is.EqualTo(true));
         }
 
         [TestCase("KGCW-5321-JUAH", true)]
