@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ActivationCodeValidator_lib\ActivationCodeValidator_lib.csproj" />
+    <ProjectReference Include="..\ActivationCodeValidator_Lib\ActivationCodeValidator_Lib.csproj" />
   </ItemGroup>
 
   <ItemGroup>

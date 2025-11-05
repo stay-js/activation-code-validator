@@ -1,6 +1,6 @@
-﻿using ActivationCodeValidator_lib;
+﻿using ActivationCodeValidator_Lib;
 
-namespace ActivationCodeValidator_test
+namespace ActivationCodeValidator_Test
 {
     public class ValidatorTests
     {

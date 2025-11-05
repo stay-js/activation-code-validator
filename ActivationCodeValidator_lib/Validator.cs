@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace ActivationCodeValidator_lib
+namespace ActivationCodeValidator_Lib
 {
     public static class Validator
     {
