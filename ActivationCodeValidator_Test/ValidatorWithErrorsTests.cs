@@ -18,10 +18,11 @@ namespace ActivationCodeValidator_Test
             Assert.That(errors, Does.Contain("Input length is invalid"));
         }
 
-        [Test]
-        public void ErrorListContainsFormatErrorWhenTheGivenStringIsInvalid()
+        [TestCase("AAAA--AAAAAAAA")]
+        [TestCase("AAAA--AAAAAA")]
+        public void ErrorListContainsFormatErrorWhenTheGivenStringIsInvalid(string input)
         {
-            Validator.CheckCodeValidity("AAAA--AAAAAAAA", out var errors);
+            Validator.CheckCodeValidity(input, out var errors);
             Assert.That(errors, Does.Contain("Input is not in formatted correctly"));
         }
 

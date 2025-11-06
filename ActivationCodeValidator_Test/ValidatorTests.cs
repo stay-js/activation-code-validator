@@ -20,6 +20,7 @@ namespace ActivationCodeValidator_Test
         [TestCase("--GGJJCCCC1")]
         [TestCase("JACA-UU1G-1M0P1")]
         [TestCase("JACA-UU1G1M0P1")]
+        [TestCase("JACUU1G-M0P1")]
         public void ValidatorReturnsFalseIfTheGivenStringIsNotInTheCorrectFormat(string input)
         {
             Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
