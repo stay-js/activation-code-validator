@@ -35,14 +35,7 @@ namespace ActivationCodeValidator_Lib
                 errors.Add("Input length is invalid");
             }
 
-            if (input.Length == LengthWithSeparator
-                && !BuildRegex(true).IsMatch(input))
-            {
-                errors.Add("Input is not in formatted correctly or contains invalid characters");
-            }
-
-            if (input.Length == LengthWithoutSeparator
-                && !BuildRegex(false).IsMatch(input))
+            if (!BuildRegex(input.Length == LengthWithSeparator).IsMatch(input))
             {
                 errors.Add("Input is not in formatted correctly or contains invalid characters");
             }
