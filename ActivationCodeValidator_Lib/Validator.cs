@@ -37,7 +37,7 @@ namespace ActivationCodeValidator_Lib
 
             if (!BuildRegex(input.Length == LengthWithSeparator).IsMatch(input))
             {
-                errors.Add("Input is not in formatted correctly or contains invalid characters");
+                errors.Add("Input is not formatted correctly or contains invalid characters");
             }
 
             if (!input.Contains('g'))

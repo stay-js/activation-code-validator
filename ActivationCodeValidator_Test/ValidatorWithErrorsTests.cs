@@ -33,7 +33,7 @@ namespace ActivationCodeValidator_Test
         {
             Validator.CheckCodeValidity(input, out var errors);
             Assert.That(errors,
-                Does.Contain("Input is not in formatted correctly or contains invalid characters"));
+                Does.Contain("Input is not formatted correctly or contains invalid characters"));
         }
 
         [Test]
