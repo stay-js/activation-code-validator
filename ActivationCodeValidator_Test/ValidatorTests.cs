@@ -4,44 +4,44 @@ namespace ActivationCodeValidator_Test
 {
     public class ValidatorTests
     {
-        [Test]
-        public void ValidatorReturnsFalseIfGivenEmptyString()
+        [TestCase("")]
+        [TestCase("  ")]
+        [TestCase("  \t\n")]
+        public void ValidatorReturnsFalseIfGivenEmptyStringOrOnlyWhitespace(string input)
         {
-            Assert.That(Validator.CheckCodeValidity(""), Is.EqualTo(false));
+            Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
         }
 
         [TestCase("CAJAVA7")]
         [TestCase("JACA-UU1G-1M0P1")]
-        public void ValidatorReturnsFalseIfGivenStringsLengthIsNotCorrect(string input)
+        public void ValidatorReturnsFalseIfGivenStringsLengthIsTooShortOrTooLong(string input)
         {
             Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
         }
 
-        [TestCase("--GGJJCCCC1")]
-        [TestCase("JACA-UU1G-1M0P1")]
+        [TestCase("---GGJJCCCC1")]
         [TestCase("JACA-UU1G1M0P1")]
         [TestCase("JACUU1G-M0P1")]
-        public void ValidatorReturnsFalseIfTheGivenStringIsNotInTheCorrectFormat(string input)
+        [TestCase("AAAA-BBBB-C@CC")]
+        public void
+            ValidatorReturnsFalseIfTheGivenStringIsInvalidOrContainsInvalidCharacters
+            (string input)
+        {
+            Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
+        }
+
+        [TestCase("AAAA-BBBB-XXXX")]
+        [TestCase("AAAA-BBBB-CCCC")]
+        [TestCase("AAAA-BBBB-CCJJ")]
+        public void
+            ValidatorReturnsFalseIfTheGivenStringDoesNotContainAtLeast_One_G_And_One_C_AndContainsExactlyOne_J
+            (string input)
         {
             Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(false));
         }
 
         [Test]
-        public void
-            ValidatorReturnsFalseIfTheGivenStringContainsCharactersOtherThan_a_to_Z_And_0_to_9()
-        {
-            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-C@CC"), Is.EqualTo(false));
-        }
-
-        [Test]
-        public void
-            ValidatorReturnsFalseIfTheGivenStringDoesNotContainAtLeast_One_G_And_One_C_AndContainsExactlyOne_J()
-        {
-            Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-CCCC"), Is.EqualTo(false));
-        }
-
-        [Test]
-        public void ValidatorReturnsFalseIfGivesStringDoesNotContainAtLeastOneNumber()
+        public void ValidatorReturnsFalseIfTheGivenStringDoesNotContainAtLeastOneNumber()
         {
             Assert.That(Validator.CheckCodeValidity("AAAA-BBBB-CCCC"), Is.EqualTo(false));
         }
@@ -62,7 +62,7 @@ namespace ActivationCodeValidator_Test
         [TestCase("CAJAVA78G", false)]
         [TestCase("JACA-UU1G-1M0P1", false)]
         [TestCase("JACA-UU1G1M0P1", false)]
-        public void ValidatorReturnExpectedResultToExampleData(string input, bool expected)
+        public void ValidatorReturnsExpectedResultToExampleData(string input, bool expected)
         {
             Assert.That(Validator.CheckCodeValidity(input), Is.EqualTo(expected));
         }

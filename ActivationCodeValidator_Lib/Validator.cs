@@ -38,13 +38,13 @@ namespace ActivationCodeValidator_Lib
             if (input.Length == LengthWithSeparator
                 && !BuildRegex(true).IsMatch(input))
             {
-                errors.Add("Input is not in formatted correctly");
+                errors.Add("Input is not in formatted correctly or contains invalid characters");
             }
 
             if (input.Length == LengthWithoutSeparator
                 && !BuildRegex(false).IsMatch(input))
             {
-                errors.Add("Input is not in formatted correctly");
+                errors.Add("Input is not in formatted correctly or contains invalid characters");
             }
 
             if (!input.Contains('g'))
